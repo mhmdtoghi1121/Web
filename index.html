@@ -1,118 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Converter Celsius to Fahrenheit" />
+    <meta name="keywords" content="converter, calculator, celsius, fahrenheit" />
+    <meta name="author" content="SabzLearn.ir" />
+    <title>SabzLearn| Js | °C to °F</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconcert" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/thermometer.png" type="image/png">
     <style>
-        h1{
-            text-align: center;
-            font-size: 25px;
-            color: red;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        ul{
+        :root {
+            font-family: "Roboto", sans-serif;
+            --color: rgb(43, 68, 180);
+            --color2: rgb(157, 239, 241);
+        }
+        body {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 3rem;
-            list-style-type: none;
-            background-color: #7f7878;
-            
-        }
-        a{
-            text-decoration: none;
-            color: #000;
-            padding: 5px 10px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: rgb(255, 255, 255);
+            background-image: linear-gradient(330deg,var(--color) 10%,var(--color2) 80%);
             font-size: 20px;
+        }
+        label {
+            font-size: 40px;
+            letter-spacing: 2px;
             font-weight: bold;
         }
-        a:hover{
-            background-color: yellowgreen;
-            box-shadow: inset -2px -2px 5px #fff, inset 2px 5px #fff;
-        }
-        button{
-            border: none;
-            background-color: lightblue;
-            padding: 8px 15px;
-            border-radius: 15px;
-            transition: all 0.3s ease-in-out;
-
-
-        }
-        button:hover{
-            background-color: yellowgreen;
-            color: #fff;
-        }
-        span{
+        input {
+            margin: 50px 0 10px;
+            padding: 7px;
             font-size: 20px;
-            font-weight: 600;
-            color: green;
-            padding: 10px 20px;
+        }
+        .result {
+            margin: 10px 0 50px;
+            font-size: 26px;
+            color: rgb(255, 255, 102);
+            letter-spacing: 1px;
+            height: 1em;
+            font-weight: bold;
+        }
+        
+        button {
+            width: 200px;
+            margin: 0 30px;
+            padding: 10px 30px;
+            background: none;
+            border: 2px solid var(--color);
+            border-radius: 5px;
+            color: var(--color2);
+            font-size: 25px;
+            transition: color 0.3s, box-shadow 0.3s;
+            box-shadow: 3px 3px 10px var(--color);
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            border-radius: 15px;
         }
-        span:hover{
-            background-color: lightgray;
-            letter-spacing: 5px;
+        button:hover {
+            color: var(--color);
+            box-shadow: 3px 3px 10px var(--color2);
         }
-        p{
-            text-align: center;
-            font-size: 30px;
-            margin-top: 10rem;
-            font-weight: bold;
-            display: none;
-
+        
+          /* ------> Media queries <------ */
+        @media screen and (max-width: 500px){ /*Smartphones*/
+            label{
+                font-size: 35px;
+            }
         }
-
+        
+        @media screen and (max-width: 1000px) {/*Bigger screens*/
+            button {
+                display: flex;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <h1 id="title">Helle user . Welcome here</h1>
-    <ul class="list">
-        <li>
-            <a href="#">home</a>
-        </li>
-        <li>
-            <a href="#">about</a>
-        </li>
-        <li>
-            <a href="#">contact</a>
-        </li>
-        <li>
-            <a href="#">serves</a>
-        </li>
-    </ul>
-    <button class="btn">your really good person</button>
-    <span class="desc">finished?</span>
-    <p class="text">ypur welcome</p>
+    <header>
+        <label for="converter">Converter <span class="C">°C</span> to <span class="F">°F</span></label>
+    </header>
+    <div>
+        <input type="text" id="converter" placeholder="°C" autocomplete="off">
+    </div>
+    <p class="result"></p>
+    <div id="buttons">
+        <button class="convertButton">Convert</button>
+        <button class="resetButton">Reset</button>
+        <button class="changeButton">Change</button>
+    </div>
+
 
     <script>
-        let title = document.getElementById("title")
-        title.addEventListener("touchstart" , function(){
-            title.innerHTML = "learning java script"
-        })
-        let btn = document.querySelector(".btn")
-        
-        btn.addEventListener("dblclick" , function(){
-            document.querySelector(".text").style.display = "block"
+        let $ = document
 
-        })
-        let desc = document.querySelector(".desc")
-        desc.addEventListener("touchstart" , function(){
-            document.querySelector(".list").style.backgroundColor = "brown"
-        })
-        desc.addEventListener("touchmove" , function(){
-            document.querySelector(".list").style.backgroundColor = "yellow"
-        })
-        desc.addEventListener("touchend" , function(){
-            document.querySelector(".list").removeEventListener("touchmove" , function(){
-            document.querySelector(".list").style.backgroundColor = "yellow"})
-        })
+let firstValue = $.querySelector(".C")
+let secondValue = $.querySelector(".F")
+let converter = $.querySelector("#converter")
+let result = $.querySelector(".result")
+let convertButton = $.querySelector(".convertButton")
+let resetButton = $.querySelector(".resetButton")
+let changeButton = $.querySelector(".changeButton")
 
+function convert(){
+    if (converter.value === ''){
+        result.innerHTML = "insert correct value"
+        result.style.color = "#993300"
+    } else if (isNaN(converter.value)){
+        result.innerHTML = "Please Enter a Number!"
+        result.style.color = "#993300"
+    }else {
+        if (firstValue.innerHTML === "°C"){ //C to F
+            let resultValue = (converter.value * 1.8 ) + 32
+            result.style.color = "rgb(255,255,102)"
+            result.innerHTML =  converter.value + "°C To " + resultValue.toFixed(2) + "°F"
+        } else{ //F to C
+            let resultValue = (converter.value - 32) * 5/9
+            result.style.color = "rgb(255,255,102)"
+            result.innerHTML = converter.value + "°F To " + resultValue.toFixed(2) + "°C"
+        }
+    }
+}
+
+function reset(){
+    result.innerHTML = ''
+    converter.value = ''
+}
+
+function swap(){
+    if (firstValue.innerHTML === "°C"){
+        firstValue.innerHTML = "°F"
+        secondValue.innerHTML = "°C"
+        converter.setAttribute("placeholder" , "°F")
+        document.title = "SabzLearn| Js | °F to °C"
+    }else{
+        firstValue.innerHTML = "°C"
+        secondValue.innerHTML = "°F"
+        converter.setAttribute("placeholder" , "°C")
+        document.title = "SabzLearn| Js | °C to °F"
+    }
+}
+convertButton.addEventListener("click" , convert)
+resetButton.addEventListener("click" , reset)
+changeButton.addEventListener("click" , swap)
     </script>
-    
 </body>
+
 </html>
